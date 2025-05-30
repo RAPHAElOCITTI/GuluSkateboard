@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gulu Skateboard Community - Empowering Youth in Northern Uganda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-yellow: #FFD700;
+            --primary-red: #DC2626;
+            --dark-bg: #1F2937;
+            --light-bg: #FFFFFF;
+            --text-dark: #111827;
+            --text-light: #6B7280;
+            --text-white: #FFFFFF;
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
+            --spacing-2xl: 64px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-sm);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(31, 41, 55, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: var(--spacing-sm) 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-yellow);
+        }
+
+        .nav-links {
+            display: none;
+            list-style: none;
+            gap: var(--spacing-md);
+        }
+
+        .nav-links a {
+            color: var(--text-white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-yellow);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary-red);
+            color: var(--text-white);
+        }
+
+        .btn-primary:hover {
+            background: #B91C1C;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-yellow);
+            border: 2px solid var(--primary-yellow);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-yellow);
+            color: var(--text-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(31, 41, 55, 0.6), rgba(31, 41, 55, 0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23374151" width="1200" height="800"/><circle fill="%23FFD700" cx="200" cy="200" r="50" opacity="0.3"/><circle fill="%23DC2626" cx="800" cy="300" r="80" opacity="0.2"/><circle fill="%23FFD700" cx="1000" cy="600" r="60" opacity="0.3"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-white);
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.2;
+        }
+
+        .hero-tagline {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            margin-bottom: var(--spacing-lg);
+            color: var(--primary-yellow);
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-xl);
+            opacity: 0.9;
+            animation: fadeInUp 2s ease-in-out;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 0.9;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        .section {
+            padding: var(--spacing-2xl) 0;
+        }
+
+        .section-alt {
+            background: #F9FAFB;
+        }
+
+        .section-dark {
+            background: var(--dark-bg);
+            color: var(--text-white);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-light);
+        }
+
+        /* Our Story */
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+
+        .story-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, var(--primary-yellow), var(--primary-red));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .story-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--primary-red);
+        }
+
+        /* Mission & Values */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .value-card {
+            text-align: center;
+            padding: var(--spacing-lg);
+            background: var(--light-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .value-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-sm);
+            font-size: 1.5rem;
+        }
+
+        /* Programs */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .program-card {
+            background: var(--light-bg);
+            padding: var(--spacing-lg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .program-icon {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .program-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-xs);
+            color: var(--primary-red);
+        }
+
+        /* Impact */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: var(--spacing-lg);
+            background: var(--primary-yellow);
+            border-radius: 12px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .stat-label {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Get Involved */
+        .involvement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .involvement-card {
+            background: var(--light-bg);
+            padding: var(--spacing-lg);
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .involvement-card:hover {
+            border-color: var(--primary-yellow);
+            transform: translateY(-2px);
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-xl);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: var(--spacing-xs);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: var(--spacing-sm);
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-yellow);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: var(--text-white);
+            padding: var(--spacing-xl) 0 var(--spacing-md);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .footer-section h4 {
+            margin-bottom: var(--spacing-sm);
+            color: var(--primary-yellow);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .footer-section ul li a {
+            color: var(--text-white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-yellow);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--spacing-md);
+            border-top: 1px solid #374151;
+            color: var(--text-light);
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                padding: 0 var(--spacing-md);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">GSC</div>
+            <ul class="nav-links">
+                <li><a href="#story">Our Story</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#get-involved">Get Involved</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Gulu Skateboard Community</h1>
+            <p class="hero-tagline">Empowering Youth in Northern Uganda, One Push at a Time</p>
+            <p class="hero-subtitle">Building Community. Building Resilience. Building Futures.</p>
+            <div class="hero-ctas">
+                <a href="#donate" class="btn btn-primary">Donate Now</a>
+                <a href="#get-involved" class="btn btn-secondary">Get Involved</a>
+                <a href="#story" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section id="story" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Story</h2>
+            <div class="story-grid">
+                <div class="story-content">
+                    <h3>More Than a Sport: Skateboarding as Social Transformation in Gulu</h3>
+                    <p>Founded by Nelly Umar in 2013, the Gulu Skateboard Community has grown from a small group of passionate skaters into a formally recognized organization transforming lives across Northern Uganda. What started as informal sessions has evolved into comprehensive programs that use skateboarding as a tool for youth empowerment, education, and community building.</p>
+                    <p>Since our official launch in 2021, we've created safe spaces where young people can develop confidence, leadership skills, and resilience while pursuing their education and building brighter futures for themselves and their community.</p>
+                </div>
+                <div class="story-image">
+                    Founder Nelly Umar Teaching Youth
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Values -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Mission & Values</h2>
+            <p class="section-subtitle">We believe in the transformative power of skateboarding to build stronger communities and brighter futures.</p>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">💪</div>
+                    <h3>Empowerment</h3>
+                    <p>Building confidence and self-belief through skateboarding achievement</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌟</div>
+                    <h3>Resilience</h3>
+                    <p>Teaching young people to overcome challenges and bounce back stronger</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🎨</div>
+                    <h3>Creativity</h3>
+                    <p>Encouraging self-expression and innovative thinking through sport</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Community</h3>
+                    <p>Fostering connections and mutual support among youth</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs -->
+    <section id="programs" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Programs</h2>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-icon">🛹</div>
+                    <h3>Free Skate Sessions</h3>
+                    <p>Weekly open sessions where youth can learn, practice, and connect with peers in a supportive environment.</p>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">🎓</div>
+                    <h3>Learn to Skate</h3>
+                    <p>Structured beginner programs teaching fundamental skateboarding skills and safety practices.</p>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">📘</div>
+                    <h3>Skate for School</h3>
+                    <p>Educational support program linking skateboarding participation with academic achievement and school attendance.</p>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">🌟</div>
+                    <h3>Mentorship & Leadership</h3>
+                    <p>Developing the next generation of community leaders through peer mentorship and leadership training.</p>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">📅</div>
+                    <h3>Events & Competitions</h3>
+                    <p>Organizing local competitions and community events to showcase talent and build community pride.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: var(--spacing-xl);">
+                <a href="#" class="btn btn-primary">See All Programs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact -->
+    <section id="impact" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Our Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Youth Weekly</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">200</div>
+                    <div class="stat-label">School Kits Distributed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Years of Impact</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Community Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Involved -->
+    <section id="get-involved" class="section">
+        <div class="container">
+            <h2 class="section-title">Get Involved</h2>
+            <p class="section-subtitle">Join us in empowering youth through skateboarding</p>
+            <div class="involvement-grid">
+                <div class="involvement-card">
+                    <div class="value-icon">💰</div>
+                    <h3>Donate</h3>
+                    <p>Support our programs with financial contributions. ₵50,000 funds a skateboard, ₵200,000 covers a school term.</p>
+                    <a href="#donate" class="btn btn-primary" style="margin-top: var(--spacing-sm);">Donate Now</a>
+                </div>
+                <div class="involvement-card">
+                    <div class="value-icon">🙋</div>
+                    <h3>Volunteer</h3>
+                    <p>Share your skills and time to help mentor youth and support our community programs.</p>
+                    <a href="#volunteer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Volunteer</a>
+                </div>
+                <div class="involvement-card">
+                    <div class="value-icon">🛹</div>
+                    <h3>Donate Equipment</h3>
+                    <p>Contribute skateboards, safety gear, or other equipment to help more youth participate.</p>
+                    <a href="#equipment" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Donate Gear</a>
+                </div>
+                <div class="involvement-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Partner With Us</h3>
+                    <p>Organizations and businesses can partner with us to expand our reach and impact.</p>
+                    <a href="#partner" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Partner</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future: Skatepark -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">The Future: Skatepark Project</h2>
+            <p class="section-subtitle">We're building Northern Uganda's first community skatepark - a permanent home for youth empowerment, creativity, and community gathering.</p>
+            <div style="text-align: center; margin-top: var(--spacing-lg);">
+                <a href="#skatepark" class="btn btn-primary">Support the Park</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </div>
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><strong>Email:</strong> info@guluskateboard.org</p>
+                    <p><strong>Phone:</strong> +256 XXX XXX XXX</p>
+                    <p><strong>Location:</strong> Gulu, Northern Uganda</p>
+                    <div style="margin-top: var(--spacing-lg);">
+                        <h4>Follow Us</h4>
+                        <p>📱 Instagram: @guluskateboard</p>
+                        <p>📘 Facebook: Gulu Skateboard Community</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#story">Our Story</a></li>
+                        <li><a href="#programs">Programs</a></li>
+                        <li><a href="#impact">Impact</a></li>
+                        <li><a href="#get-involved">Get Involved</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#donate">Donate</a></li>
+                        <li><a href="#volunteer">Volunteer</a></li>
+                        <li><a href="#equipment">Donate Equipment</a></li>
+                        <li><a href="#partner">Partnership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Stay updated with our latest news and impact stories.</p>
+                    <div style="margin-top: var(--spacing-sm);">
+                        <input type="email" placeholder="Your email" style="padding: var(--spacing-xs); border-radius: 4px; border: none; margin-right: var(--spacing-xs);">
+                        <button class="btn btn-primary" style="padding: var(--spacing-xs) var(--spacing-sm);">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Gulu Skateboard Community. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
