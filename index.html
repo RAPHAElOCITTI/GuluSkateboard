@@ -1,689 +1,2291 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=alfa-slab-one:400" rel="stylesheet" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gulu Skateboard Community - Empowering Youth in Northern Uganda</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Gulu Skateboard Community - Empowering Youth Through Skateboarding</title>
+    <meta name="description" content="Gulu Skateboard Community empowers youth in Northern Uganda through skateboarding, providing positive alternatives and building resilience.">
+    
     <style>
+        :root {
+            --color-dark: #1a1a1a;
+            --color-light: #ffffff;
+            --color-primary: #FFCE00;
+            --color-accent: #F2545B;
+            --color-gray: #666666;
+            --color-light-gray: #f8f9fa;
+            --color-border: #e5e5e5;
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --max-width: 1200px;
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 32px;
+            --spacing-lg: 64px;
+            --spacing-xl: 128px;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-yellow: #FFD700;
-            --primary-red: #DC2626;
-            --dark-bg: #1F2937;
-            --light-bg: #FFFFFF;
-            --text-dark: #111827;
-            --text-light: #6B7280;
-            --text-white: #FFFFFF;
-            --spacing-xs: 8px;
-            --spacing-sm: 16px;
-            --spacing-md: 24px;
-            --spacing-lg: 32px;
-            --spacing-xl: 48px;
-            --spacing-2xl: 64px;
-        }
-
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-primary);
             line-height: 1.6;
-            color: var(--text-dark);
+            color: var(--color-dark);
+            background: var(--color-light);
+            font-size: 16px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: var(--max-width);
             margin: 0 auto;
-            padding: 0 var(--spacing-sm);
+            padding: 0 var(--spacing-md);
         }
 
-        /* Header */
-        header {
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        h1 { font-size: clamp(2rem, 4vw, 3rem); }
+        h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+        h3 { font-size: 1.25rem; }
+        h4 { font-size: 1.125rem; }
+
+        p { margin-bottom: var(--spacing-sm); color: var(--color-gray); }
+
+        /* Navigation */
+        #site-header {
             position: fixed;
             top: 0;
-            width: 100%;
-            background: rgba(31, 41, 55, 0.95);
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
             z-index: 1000;
-            padding: var(--spacing-sm) 0;
         }
 
-        nav {
+        #site-header .container {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            padding: var(--spacing-sm) var(--spacing-md);
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-yellow);
-        }
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--color-dark);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs); /* Assuming --spacing-xs is defined */
+}
 
-        .nav-links {
-            display: none;
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    /* The background and border-radius will now apply to the container for the image */
+    background: var(--color-primary);
+    border-radius: 4px;
+    display: flex; /* Keep flex to center the image if needed */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    overflow: hidden; /* Crucial: Hides any part of the image that overflows */
+    position: relative; /* Needed if you ever want absolute positioning for internal elements */
+    /* Remove color and font-size as they are for text, not an image container */
+    /* color: var(--color-dark); */
+    /* font-weight: 700; */
+    /* font-size: 14px; */
+}
+
+/* NEW CSS RULE for the image inside .logo-icon */
+.logo-icon img {
+    width: 100%; /* Make the image take up 100% of the container's width */
+    height: 100%; /* Make the image take up 100% of the container's height */
+    object-fit: cover; /* This is the key: it covers the area while maintaining aspect ratio */
+    display: block; /* Removes any extra space below the image */
+    border-radius: 4px; /* Optional: Apply border-radius to the image itself if needed */
+}
+
+        #primary-nav ul {
+            display: flex;
             list-style: none;
             gap: var(--spacing-md);
+            align-items: center;
         }
 
-        .nav-links a {
-            color: var(--text-white);
+        #primary-nav a {
             text-decoration: none;
+            color: var(--color-gray);
             font-weight: 500;
-            transition: color 0.3s;
+            transition: color 0.2s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--primary-yellow);
+        #primary-nav a:hover,
+        #primary-nav a.active {
+            color: var(--color-dark);
         }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 20px;
+            height: 2px;
+            background: var(--color-dark);
+            transition: 0.3s;
+        }
+
+        /* Layout */
+        .page-content {
+            margin-top: 72px;
+        }
+
+        .section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .section:first-child {
+            padding-top: var(--spacing-lg);
+        }
+
+        /* Hero Section */
+#hero {
+    position: relative; /* Essential for positioning children correctly */
+    min-height: 100vh; /* Make hero section at least full viewport height */
+    display: flex; /* Use flexbox to center content */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    text-align: center;
+    overflow: hidden; /* Hide any video overflow */
+    color: var(--color-light); /* Default text color for contrast */
+}
+
+/* Background Video Styling */
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%); /* Center the video */
+    object-fit: cover; /* Ensures video covers the area while maintaining aspect ratio */
+    z-index: -2; /* Place video behind overlay and content */
+}
+
+/* Video Overlay Styling */
+.hero-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Darker overlay for better text readability */
+    z-index: -1; /* Place overlay above video but behind content */
+}
+
+/* Hero Content Styling (ensure it's above the video and overlay) */
+.hero-content {
+    position: relative; /* Ensures content respects z-index */
+    z-index: 1; /* Place content above video and overlay */
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px; /* Add some padding for smaller screens */
+}
+
+.hero-title {
+    font-family: 'Alfa Slab One', sans-serif; /* Added Alfa Slab One */
+    font-weight: 400; /* Alfa Slab One typically has only one weight */
+    margin-bottom: var(--spacing-md);
+    color: var(--color-light);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.hero-subtitle {
+    font-size: 1.125rem;
+    margin-bottom: var(--spacing-lg);
+    color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for subtitle */
+}
+
+.hero-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
         /* Buttons */
         .btn {
             display: inline-block;
-            padding: var(--spacing-sm) var(--spacing-md);
-            border-radius: 8px;
+            padding: 12px 24px;
             text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-            text-align: center;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
         }
 
         .btn-primary {
-            background: var(--primary-red);
-            color: var(--text-white);
+            background: var(--color-primary);
+            color: var(--color-dark);
         }
 
         .btn-primary:hover {
-            background: #B91C1C;
-            transform: translateY(-2px);
+            background: #e6b800;
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--primary-yellow);
-            border: 2px solid var(--primary-yellow);
+            color: var(--color-gray);
+            border-color: var(--color-border);
         }
 
         .btn-secondary:hover {
-            background: var(--primary-yellow);
-            color: var(--text-dark);
+            border-color: var(--color-light);
+            color: var(--color-accent);
         }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(31, 41, 55, 0.6), rgba(31, 41, 55, 0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23374151" width="1200" height="800"/><circle fill="%23FFD700" cx="200" cy="200" r="50" opacity="0.3"/><circle fill="%23DC2626" cx="800" cy="300" r="80" opacity="0.2"/><circle fill="%23FFD700" cx="1000" cy="600" r="60" opacity="0.3"/></svg>');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--text-white);
-        }
-
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: var(--spacing-sm);
-            line-height: 1.2;
-        }
-
-        .hero-tagline {
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-            margin-bottom: var(--spacing-lg);
-            color: var(--primary-yellow);
-        }
-
-        .hero-subtitle {
-            font-size: 1.1rem;
-            margin-bottom: var(--spacing-xl);
-            opacity: 0.9;
-            animation: fadeInUp 2s ease-in-out;
-        }
-
-        .hero-ctas {
-            display: flex;
-            gap: var(--spacing-sm);
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 0.9;
-                transform: translateY(0);
-            }
-        }
-
-        /* Sections */
-        .section {
-            padding: var(--spacing-2xl) 0;
-        }
-
-        .section-alt {
-            background: #F9FAFB;
-        }
-
-        .section-dark {
-            background: var(--dark-bg);
-            color: var(--text-white);
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: var(--spacing-xl);
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            text-align: center;
-            margin-bottom: var(--spacing-lg);
-            color: var(--text-light);
-        }
-
-        /* Our Story */
-        .story-grid {
+        /* Stats */
+        .stats {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--spacing-xl);
-            align-items: center;
-        }
-
-        .story-image {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(45deg, var(--primary-yellow), var(--primary-red));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .story-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: var(--spacing-sm);
-            color: var(--primary-red);
-        }
-
-        /* Mission & Values */
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--spacing-lg);
-            margin-top: var(--spacing-xl);
-        }
-
-        .value-card {
-            text-align: center;
-            padding: var(--spacing-lg);
-            background: var(--light-bg);
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .value-icon {
-            width: 64px;
-            height: 64px;
-            background: var(--primary-yellow);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto var(--spacing-sm);
-            font-size: 1.5rem;
-        }
-
-        /* Programs */
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
         }
 
-        .program-card {
-            background: var(--light-bg);
-            padding: var(--spacing-lg);
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .program-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .program-icon {
-            font-size: 2rem;
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .program-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: var(--spacing-xs);
-            color: var(--primary-red);
-        }
-
-        /* Impact */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--spacing-lg);
-            margin-bottom: var(--spacing-xl);
-        }
-
-        .stat-card {
+        .stat {
             text-align: center;
-            padding: var(--spacing-lg);
-            background: var(--primary-yellow);
-            border-radius: 12px;
+            padding: var(--spacing-md);
         }
 
         .stat-number {
+            display: block;
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--text-dark);
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xs);
         }
 
         .stat-label {
-            font-weight: 600;
-            color: var(--text-dark);
+            color: var(--color-gray);
+            font-size: 0.875rem;
         }
 
-        /* Get Involved */
-        .involvement-grid {
+        /* Grid */
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: var(--spacing-md);
         }
 
-        .involvement-card {
-            background: var(--light-bg);
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+        /* Cards */
+        .card {
+            background: var(--color-white);
             padding: var(--spacing-lg);
-            border-radius: 12px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
             text-align: center;
-            border: 2px solid transparent;
-            transition: all 0.3s;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .involvement-card:hover {
-            border-color: var(--primary-yellow);
+        .card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Styling for the new image container within the card */
+        .card-image-container {
+            width: 100%; /* Make it fill the card's width */
+            height: 180px; /* Set a fixed height for consistency across cards */
+            background: var(--color-light-gray); /* Fallback background if image fails */
+            border-radius: 6px; /* Slightly rounded corners for the image container */
+            margin-bottom: var(--spacing-md); /* Space between image and title */
+            overflow: hidden; /* Crucial: Hides any part of the image that overflows */
+            display: flex; /* Use flexbox to center image if it doesn't fully fill */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+        }
+
+        /* Styling for the image inside the container */
+        .card-image-container img {
+            width: 100%; /* Make the image fill the container's width */
+            height: 100%; /* Make the image fill the container's height */
+            object-fit: cover; /* This is the key: scales image to cover while maintaining aspect ratio */
+            display: block; /* Removes any extra space below the image */
+            border-radius: 6px; /* Optional: Applies border-radius to the image itself */
+        }
+
+
+        .card-icon {
+        
+             display: none; /* Hide the old icon if you're replacing it with images */
+            
+        }
+
+        /* Merch Section */
+        .merch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .merch-item {
+            text-align: center;
+            padding: var(--spacing-md);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .merch-item:hover {
+            border-color: var(--color-primary);
             transform: translateY(-2px);
         }
 
-        /* Contact */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--spacing-xl);
+        .merch-image {
+            width: 100%;
+            height: 160px;
+            background: var(--color-light-gray);
+            border-radius: 4px;
+            display: flex; /* Keep flex for potential centering if image doesn't fill completely */
+            align-items: center; /* Center content vertically */
+            justify-content: center; /* Center content horizontally */
+            margin-bottom: var(--spacing-sm); /* Assuming --spacing-sm is defined */
+            color: var(--color-gray);
+            font-size: 0.875rem;
+            overflow: hidden; /* Crucial: Hides any part of the image that overflows */
         }
 
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-sm);
+        .merch-image img {
+            width: 100%; /* Make the image take up 100% of the container's width */
+            height: 100%; /* Make the image take up 100% of the container's height */
+            object-fit: cover; /* This is the key: it covers the area while maintaining aspect ratio */
+            display: block; /* Removes any extra space below the image */
         }
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group label {
+        .merch-title {
+            font-weight: 600;
+            color: var(--color-dark);
             margin-bottom: var(--spacing-xs);
+        }
+
+        .merch-price {
+            color: var(--color-primary);
             font-weight: 600;
         }
 
+      /* Enhanced Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--color-primary), #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.section-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-gray);
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* Enhanced Support Cards Grid */
+.support-cards-grid {
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.support-cards-grid .card {
+    padding: 2.5rem;
+    border-radius: 16px;
+    background: var(--color-white);
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.support-cards-grid .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), #ffd700);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.support-cards-grid .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.support-cards-grid .card:hover::before {
+    opacity: 1;
+}
+
+.support-cards-grid .card h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.support-cards-grid .card p {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    color: var(--color-gray);
+    font-size: 1rem;
+}
+
+.support-cards-grid .card ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.support-cards-grid .card ul li {
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.6;
+    color: var(--color-dark);
+}
+
+.support-cards-grid .card ul li::before {
+    content: '•';
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* Enhanced CTA Button */
+.support-cards-grid .card .cta-button {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 2rem;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid var(--color-primary);
+    background: var(--color-primary);
+    color: var(--color-dark);
+    width: fit-content;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.support-cards-grid .card .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.support-cards-grid .card .cta-button:hover {
+    background: #e6b800;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 204, 0, 0.3);
+}
+
+.support-cards-grid .card .cta-button:hover::before {
+    left: 100%;
+}
+
+/* Enhanced Donate Card */
+.support-card-donate {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #ffd700 100%) !important;
+    color: var(--color-dark) !important;
+    position: relative;
+}
+
+.support-card-donate::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.support-card-donate h3,
+.support-card-donate h4 {
+    color: var(--color-dark) !important;
+}
+
+.support-card-donate .donation-breakdown {
+    background: rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    border-left: 4px solid rgba(0,0,0,0.2);
+}
+
+.support-card-donate .image-placeholder {
+    background: rgba(0,0,0,0.15);
+    color: var(--color-dark);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    margin: 1.5rem 0;
+    border: 2px dashed rgba(0,0,0,0.2);
+}
+
+/* Merch Section Enhancements */
+#shop-merch-section {
+    padding: 5rem 0;
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+    position: relative;
+}
+
+#shop-merch-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+}
+
+.merch-grid {
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.merch-item {
+    background: var(--color-white);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.merch-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,204,0,0.1), rgba(255,215,0,0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.merch-item:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+}
+
+.merch-item:hover::before {
+    opacity: 1;
+}
+
+.merch-image-container {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    background: var(--color-light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.merch-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.merch-item:hover .merch-image-container img {
+    transform: scale(1.05);
+}
+
+.merch-details {
+    padding: 1.5rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.merch-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--color-dark);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.merch-price {
+    font-weight: 700;
+    font-size: 1.4rem;
+    background: linear-gradient(45deg, var(--color-primary), #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-top: 0.75rem;
+    text-align: right;
+}
+
+/* Enhanced Social Share Section */
+.social-share-section {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 3rem;
+    background: linear-gradient(135deg, var(--color-light-gray) 0%, rgba(255,204,0,0.05) 100%);
+    border-radius: 20px;
+    border: 1px solid rgba(255,204,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-share-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,204,0,0.03) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.social-share-section h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+}
+
+.social-share-section p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    color: var(--color-gray);
+    position: relative;
+    z-index: 1;
+}
+
+/* Enhanced Button Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-primary), #ffd700);
+    color: var(--color-dark);
+    border-color: var(--color-primary);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #e6b800, #ffcc00);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(255, 204, 0, 0.4);
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .support-cards-grid {
+        gap: 1.5rem;
+    }
+    
+    .support-cards-grid .card {
+        padding: 2rem;
+    }
+    
+    .merch-grid {
+        gap: 1.5rem;
+    }
+    
+    .social-share-section {
+        padding: 2rem;
+        margin-top: 3rem;
+    }
+}
+       /* Enhanced Image fitting for .image-placeholder */
+        .image-placeholder {
+            background: var(--color-light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-gray);
+            font-weight: 500;
+            text-align: center;
+            border-radius: 12px;
+            overflow: hidden;
+            /* Removed borders and dashed styling for seamless fit */
+        }
+
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 12px;
+            /* Removed border-radius since container handles it */
+        }
+
+ /* Enhanced Video Container with Scroll Zoom Effect */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 16px;
+            transform-origin: center;
+            transition: transform 0.3s ease-out;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+        }
+
+        /* Scroll-triggered zoom effect */
+        .video-container.zoom-in {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .section {
+                padding: 2rem 0;
+            }
+        }
+        /* Forms */
+        .form-group {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 500;
+            color: var(--color-dark);
+        }
+
         .form-group input,
-        .form-group textarea {
-            padding: var(--spacing-sm);
-            border: 2px solid #E5E7EB;
-            border-radius: 8px;
-            font-family: inherit;
-            transition: border-color 0.3s;
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.2s ease;
         }
 
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
-            border-color: var(--primary-yellow);
+            border-color: var(--color-primary);
+        }
+        
+
+        /* Enhanced Contact Page Styling */
+#contact-page {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, rgba(255,204,0,0.03) 100%);
+    min-height: 100vh;
+    position: relative;
+}
+
+#contact-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(255,204,0,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255,215,0,0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+#contact-page .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Enhanced Section Headers */
+#contact-page .section-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--color-primary), #ffd700, #ffcc00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    line-height: 1.2;
+    position: relative;
+}
+
+#contact-page .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), #ffd700);
+    border-radius: 2px;
+}
+
+#contact-page .section-subtitle {
+    font-size: 1.3rem;
+    color: var(--color-gray);
+    text-align: center;
+    margin-bottom: 4rem;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* Enhanced Grid Layout */
+#contact-page .grid {
+    gap: 4rem;
+    margin-top: 3rem;
+    align-items: start;
+}
+
+/* Enhanced Form Styling */
+.contact-form {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 
+        0 20px 40px rgba(0,0,0,0.1),
+        0 0 0 1px rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,204,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), #ffd700, var(--color-primary));
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { background-position: -200% 0; }
+    50% { background-position: 200% 0; }
+}
+
+.contact-form h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: 2rem;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.contact-form h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 30px;
+    background: linear-gradient(135deg, var(--color-primary), #ffd700);
+    border-radius: 2px;
+}
+
+/* Enhanced Form Groups */
+.form-group {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+.form-group label::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 20px;
+    height: 2px;
+    background: var(--color-primary);
+    border-radius: 1px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.form-group:focus-within label::after {
+    opacity: 1;
+}
+
+/* Enhanced Input Styling */
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid rgba(0,0,0,0.1);
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    backdrop-filter: blur(5px);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 
+        0 0 0 4px rgba(255, 204, 0, 0.1),
+        0 8px 25px rgba(255, 204, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+}
+
+/* Enhanced Submit Button */
+.contact-form .cta-button {
+    width: 100%;
+    padding: 1.25rem 2rem;
+    background: linear-gradient(135deg, var(--color-primary), #ffd700);
+    color: var(--color-dark);
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.contact-form .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.contact-form .cta-button:hover {
+    background: linear-gradient(135deg, #e6b800, #ffcc00);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(255, 204, 0, 0.4);
+}
+
+.contact-form .cta-button:hover::before {
+    left: 100%;
+}
+
+.contact-form .cta-button:active {
+    transform: translateY(-1px);
+}
+
+/* Enhanced Contact Information Cards */
+.contact-info-section h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: 2rem;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.contact-info-section h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 30px;
+    background: linear-gradient(135deg, var(--color-primary), #ffd700);
+    border-radius: 2px;
+}
+
+.contact-info-section .card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255,204,0,0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-info-section .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-primary), #ffd700);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.contact-info-section .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(255, 204, 0, 0.2);
+}
+
+.contact-info-section .card:hover::before {
+    opacity: 1;
+}
+
+.contact-info-section .card h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contact-info-section .card p {
+    color: var(--color-dark);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.contact-info-section .card p:last-child {
+    margin-bottom: 0;
+}
+
+/* Enhanced Social Media Section */
+.social-media-card {
+    position: relative;
+}
+
+.social-media-card .image-placeholder {
+    background: linear-gradient(135deg, rgba(255,204,0,0.1), rgba(255,215,0,0.05));
+    border: 2px dashed rgba(255,204,0,0.3);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    color: var(--color-primary);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.social-media-card .image-placeholder:hover {
+    background: linear-gradient(135deg, rgba(255,204,0,0.2), rgba(255,215,0,0.1));
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #contact-page .section-title {
+        font-size: 2.5rem;
+    }
+    
+    #contact-page .grid {
+        gap: 3rem;
+    }
+    
+    .contact-form,
+    .contact-info-section .card {
+        padding: 2rem;
+    }
+    
+    .contact-form h3,
+    .contact-info-section h3 {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #contact-page .section-title {
+        font-size: 2rem;
+    }
+    
+    .contact-form,
+    .contact-info-section .card {
+        padding: 1.5rem;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 0.875rem 1rem;
+    }
+}
+        
+/* Footer */
+#site-footer {
+    background: var(--color-dark);
+    border-top: 1px solid #333333;
+    padding: var(--spacing-lg) 0 var(--spacing-md);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-section h4 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-light);
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.footer-section a {
+    color: #cccccc;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-section a:hover {
+    color: var(--color-light);
+}
+
+.footer-bottom {
+    border-top: 1px solid #333333;
+    padding-top: var(--spacing-md);
+    text-align: center;
+    color: #cccccc;
+    font-size: 0.875rem;
+}
+
+        /* Page visibility */
+        .page-hidden {
+            display: none;
         }
 
-        /* Footer */
-        footer {
-            background: var(--dark-bg);
-            color: var(--text-white);
-            padding: var(--spacing-xl) 0 var(--spacing-md);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--spacing-lg);
+        /* Support page store section */
+        .store-section {
+            background: var(--color-light-gray);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
             margin-bottom: var(--spacing-lg);
         }
 
-        .footer-section h4 {
-            margin-bottom: var(--spacing-sm);
-            color: var(--primary-yellow);
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .footer-section ul li a {
-            color: var(--text-white);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-section ul li a:hover {
-            color: var(--primary-yellow);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: var(--spacing-md);
-            border-top: 1px solid #374151;
-            color: var(--text-light);
-        }
-
         /* Responsive */
-        @media (min-width: 768px) {
-            .nav-links {
+        @media (max-width: 768px) {
+            :root {
+                --spacing-md: 16px;
+                --spacing-lg: 32px;
+                --spacing-xl: 64px;
+            }
+
+            #primary-nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                gap: 0;
+                border-top: 1px solid var(--color-border);
+            }
+
+            #primary-nav ul.active {
                 display: flex;
             }
 
-            .story-grid {
-                grid-template-columns: 1fr 1fr;
+            #primary-nav ul li {
+                width: 100%;
+                border-bottom: 1px solid var(--color-border);
             }
 
-            .contact-grid {
-                grid-template-columns: 1fr 1fr;
+            #primary-nav ul li a {
+                display: block;
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+
+            .merch-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             }
         }
 
-        @media (min-width: 1024px) {
-            .container {
-                padding: 0 var(--spacing-md);
-            }
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-
 <body>
     <!-- Header -->
-    <header>
-        <nav class="container">
-            <div class="logo">GSC</div>
-            <ul class="nav-links">
-                <li><a href="#story">Our Story</a></li>
-                <li><a href="#programs">Programs</a></li>
-                <li><a href="#impact">Impact</a></li>
-                <li><a href="#get-involved">Get Involved</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+    <header id="site-header">
+        <div class="container">
+            <a href="#" class="logo" onclick="showPage('home')">
+    <div class="logo-icon">
+        <img src="assets/img/logo6.png" alt="Gulu Skateboard Community Logo">
+    </div>
+    Gulu Skateboard Community
+</a>
+            <nav id="primary-nav">
+                <ul id="nav-menu">
+                    <li><a href="#" onclick="showPage('home')" class="nav-link active">Home</a></li>
+                    <li><a href="#" onclick="showPage('about')" class="nav-link">About</a></li>
+                    <li><a href="#" onclick="showPage('programs')" class="nav-link">Programs</a></li>
+                    <li><a href="#" onclick="showPage('gallery')" class="nav-link">Gallery</a></li>
+                    <li><a href="#" onclick="showPage('impact')" class="nav-link">Impact</a></li>
+                    <li><a href="#" onclick="showPage('support')" class="nav-link">Support</a></li>
+                    <li><a href="#" onclick="showPage('contact')" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
     </header>
 
+    <!-- Page Content Container -->
+    <div class="page-content">
+        
+        <!-- HOME PAGE -->
+       <div id="home-page" class="page">
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Gulu Skateboard Community</h1>
-            <p class="hero-tagline">Empowering Youth in Northern Uganda, One Push at a Time</p>
-            <p class="hero-subtitle">Building Community. Building Resilience. Building Futures.</p>
-            <div class="hero-ctas">
-                <a href="#donate" class="btn btn-primary">Donate Now</a>
-                <a href="#get-involved" class="btn btn-secondary">Get Involved</a>
-                <a href="#story" class="btn btn-secondary">Learn More</a>
-            </div>
-        </div>
-    </section>
+    <section id="hero">
+        <!-- Background Video -->
+        <video autoplay loop muted playsinline class="hero-video">
+            <source src="assets/img/background-vid.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <!-- Video Overlay for Readability -->
+        <div class="hero-video-overlay"></div>
 
-    <!-- Our Story -->
-    <section id="story" class="section">
         <div class="container">
-            <h2 class="section-title">Our Story</h2>
-            <div class="story-grid">
-                <div class="story-content">
-                    <h3>More Than a Sport: Skateboarding as Social Transformation in Gulu</h3>
-                    <p>Founded by Nelly Umar in 2013, the Gulu Skateboard Community has grown from a small group of passionate skaters into a formally recognized organization transforming lives across Northern Uganda. What started as informal sessions has evolved into comprehensive programs that use skateboarding as a tool for youth empowerment, education, and community building.</p>
-                    <p>Since our official launch in 2021, we've created safe spaces where young people can develop confidence, leadership skills, and resilience while pursuing their education and building brighter futures for themselves and their community.</p>
-                </div>
-                <div class="story-image">
-                    Founder Nelly Umar Teaching Youth
+            <div class="hero-content fade-up">
+                <h1 class="hero-title">Empowering Youth in Northern Uganda</h1>
+                <p class="hero-subtitle">Building community, resilience, and brighter futures through skateboarding - one push at a time.</p>
+                <div class="hero-actions">
+                    <a href="#" class="btn btn-primary" onclick="showPage('support')">Support the Movement</a>
+                    <a href="#" class="btn btn-secondary" onclick="showPage('about')">Learn More</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Mission & Values -->
-    <section class="section section-alt">
-        <div class="container">
-            <h2 class="section-title">Mission & Values</h2>
-            <p class="section-subtitle">We believe in the transformative power of skateboarding to build stronger communities and brighter futures.</p>
-            
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon">💪</div>
-                    <h3>Empowerment</h3>
-                    <p>Building confidence and self-belief through skateboarding achievement</p>
+            <!-- Stats -->
+            <section class="section">
+                <div class="container">
+                    <div class="stats fade-up">
+                        <div class="stat">
+                            <span class="stat-number">200+</span>
+                            <span class="stat-label">Youth Engaged</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">8</span>
+                            <span class="stat-label">Years of Impact</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Events Held</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">1</span>
+                            <span class="stat-label">Community United</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="value-card">
-                    <div class="value-icon">🌟</div>
-                    <h3>Resilience</h3>
-                    <p>Teaching young people to overcome challenges and bounce back stronger</p>
+            </section>
+
+            <!-- What We Do -->
+            <section class="section">
+                <div class="container">
+                    <div class="section-header fade-up">
+                        <h2 class="section-title">What We Do</h2>
+                        <p class="section-subtitle">Creating pathways from the skatepark to the classroom and beyond</p>
+                    </div>
+                    <div class="grid grid-3">
+                        <div class="card fade-up">
+                            <div class="card-icon">🛹</div>
+                            <h3>Free Skate Sessions</h3>
+                            <p>Regular skateboarding lessons and practice sessions open to all youth in the community, regardless of skill level or background.</p>
+                        </div>
+                        <div class="card fade-up">
+                            <div class="card-icon">🎓</div>
+                            <h3>Skate for School</h3>
+                            <p>Linking skateboarding participation to educational support, providing school materials and fees for dedicated participants.</p>
+                        </div>
+                        <div class="card fade-up">
+                            <div class="card-icon">🤝</div>
+                            <h3>Community Events</h3>
+                            <p>Organizing competitions, jams, and community gatherings that bring people together and showcase local talent.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="value-card">
-                    <div class="value-icon">🎨</div>
-                    <h3>Creativity</h3>
-                    <p>Encouraging self-expression and innovative thinking through sport</p>
+            </section>
+
+            <!-- Merch Section -->
+            <section class="section" style="background: var(--color-light-gray);">
+                <div class="container">
+                    <div class="section-header fade-up">
+                        <h2 class="section-title">Support Through Style</h2>
+                        <p class="section-subtitle">Rep the movement with GSC branded gear - every purchase supports our programs</p>
+                    </div>
+                    <div class="merch-grid">
+                        <div class="merch-item fade-up" onclick="showPage('support'); scrollToStore();">
+                            <div class="merch-image">
+                                <img src="assets/img/t.jpg" alt="GSC T-Shirt Front & Back Print">
+                            </div>
+                            <div class="merch-title">GSC Classic Tee</div>
+                            <div class="merch-price">UGX 45,000</div>
+                        </div>
+                        <div class="merch-item fade-up" onclick="showPage('support'); scrollToStore();">
+                            <div class="merch-image">
+                                <img src="assets/img/hoodie.webp" alt="GSC T-Shirt Front & Back Print">
+                            </div>
+                            <div class="merch-title">GSC Hoodie</div>
+                            <div class="merch-price">UGX 85,000</div>
+                        </div>
+                        <div class="merch-item fade-up" onclick="showPage('support'); scrollToStore();">
+                            <div class="merch-image">
+                                <img src="assets/img/skate-board.jpg" alt="GSC T-Shirt Front & Back Print">
+                            </div>
+                            <div class="merch-title">GSC Skateboard</div>
+                            <div class="merch-price">UGX 180,000</div>
+                        </div>
+                        <div class="merch-item fade-up" onclick="showPage('support'); scrollToStore();">
+                            <div class="merch-image">
+                                <img src="assets/img/sticker.jpg" alt="GSC Sticker Pack">
+                            </div>
+                            <div class="merch-title">Sticker Pack</div>
+                            <div class="merch-price">UGX 15,000</div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: var(--spacing-lg);">
+                        <a href="#" class="btn btn-primary" onclick="showPage('support'); scrollToStore();">Visit Store</a>
+                    </div>
                 </div>
-                <div class="value-card">
-                    <div class="value-icon">🤝</div>
-                    <h3>Community</h3>
-                    <p>Fostering connections and mutual support among youth</p>
+            </section>
+        </div>
+
+       <!-- ABOUT PAGE -->
+    <div id="about-page" class="page page-hidden">
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1 class="section-title">Our Story</h1>
+                    <p class="section-subtitle">Founded on passion, driven by purpose</p>
+                </div>
+                <div class="grid grid-2" style="align-items: center; gap: var(--spacing-lg);">
+                    <div>
+                        <h2>Building Community Through Skateboarding</h2>
+                        <p>Since 2013, <strong>Nelly Umar</strong> has been the driving force behind skateboarding culture in Gulu, Northern Uganda. What started as a personal passion became a community movement when GSC was formally established in 2021.</p>
+                        <p>Northern Uganda faces unique challenges - the legacy of conflict, limited opportunities for youth, and socio-economic pressures that can lead vulnerable young people toward negative influences. We recognized skateboarding's power to transform lives and create positive change.</p>
+                        <p><em>"Skateboarding isn't just a sport here - it's social cement. It rebuilds community, one push at a time."</em></p>
+                    </div>
+                    <div class="image-placeholder" style="height: 300px;">
+                        <img src="assets/img/nelly.jpg" alt="Gulu Skateboard Community Logo">
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Programs -->
-    <section id="programs" class="section">
+        </section>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Video</h2>
+                </div>
+                <div class="video-container" id="featured-video">
+                    <iframe id="myYoutubeVideo" src="https://www.youtube.com/embed/UX1uiPS1rMM?si=XOf_Z2JyxTTgywaw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div style="margin-top: var(--spacing-sm);">
+                    <h3>Construction of the first skatepark in Northern Uganda</h3>
+                    <p style="color: var(--color-gray); font-size: 0.875rem;">Gulu skateboard community • 2024 • 237 views</p>
+                </div>
+            </div>
+        </section>
+        <section class="section" style="background: var(--color-light-gray);">
+            <div class="container">
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3 style="color: var(--color-primary);">Our Mission</h3>
+                        <p>To harness the transformative power of skateboarding to empower youth and children in Northern Uganda, providing positive alternatives, fostering community, building resilience, and steering them away from criminal activities and negative influences.</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="color: var(--color-accent);">Our Vision</h3>
+                        <p>A thriving, empowered generation in Northern Uganda, united by skateboarding, equipped with life skills and actively shaping a brighter future for themselves and their community.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+        <div id="programs-page" class="page page-hidden">
+    <section class="section">
         <div class="container">
-            <h2 class="section-title">Our Programs</h2>
-            <div class="programs-grid">
-                <div class="program-card">
-                    <div class="program-icon">🛹</div>
+            <div class="section-header">
+                <h1 class="section-title">Programs & Projects</h1>
+                <p class="section-subtitle">Creating pathways from the skatepark to the classroom and beyond</p>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="assets/img/free-skate-session.jpeg" alt="Youth enjoying free skate sessions">
+                    </div>
                     <h3>Free Skate Sessions</h3>
-                    <p>Weekly open sessions where youth can learn, practice, and connect with peers in a supportive environment.</p>
+                    <p>Regular skateboarding lessons and practice sessions open to all youth in the community. We provide boards, safety equipment, and expert instruction.</p>
                 </div>
-                <div class="program-card">
-                    <div class="program-icon">🎓</div>
-                    <h3>Learn to Skate</h3>
-                    <p>Structured beginner programs teaching fundamental skateboarding skills and safety practices.</p>
-                </div>
-                <div class="program-card">
-                    <div class="program-icon">📘</div>
-                    <h3>Skate for School</h3>
-                    <p>Educational support program linking skateboarding participation with academic achievement and school attendance.</p>
-                </div>
-                <div class="program-card">
-                    <div class="program-icon">🌟</div>
-                    <h3>Mentorship & Leadership</h3>
-                    <p>Developing the next generation of community leaders through peer mentorship and leadership training.</p>
-                </div>
-                <div class="program-card">
-                    <div class="program-icon">📅</div>
-                    <h3>Events & Competitions</h3>
-                    <p>Organizing local competitions and community events to showcase talent and build community pride.</p>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: var(--spacing-xl);">
-                <a href="#" class="btn btn-primary">See All Programs</a>
-            </div>
-        </div>
-    </section>
 
-    <!-- Impact -->
-    <section id="impact" class="section section-dark">
-        <div class="container">
-            <h2 class="section-title">Our Impact</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Youth Weekly</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">200</div>
-                    <div class="stat-label">School Kits Distributed</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">8</div>
-                    <div class="stat-label">Years of Impact</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Community Support</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Get Involved -->
-    <section id="get-involved" class="section">
-        <div class="container">
-            <h2 class="section-title">Get Involved</h2>
-            <p class="section-subtitle">Join us in empowering youth through skateboarding</p>
-            <div class="involvement-grid">
-                <div class="involvement-card">
-                    <div class="value-icon">💰</div>
-                    <h3>Donate</h3>
-                    <p>Support our programs with financial contributions. ₵50,000 funds a skateboard, ₵200,000 covers a school term.</p>
-                    <a href="#donate" class="btn btn-primary" style="margin-top: var(--spacing-sm);">Donate Now</a>
-                </div>
-                <div class="involvement-card">
-                    <div class="value-icon">🙋</div>
-                    <h3>Volunteer</h3>
-                    <p>Share your skills and time to help mentor youth and support our community programs.</p>
-                    <a href="#volunteer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Volunteer</a>
-                </div>
-                <div class="involvement-card">
-                    <div class="value-icon">🛹</div>
-                    <h3>Donate Equipment</h3>
-                    <p>Contribute skateboards, safety gear, or other equipment to help more youth participate.</p>
-                    <a href="#equipment" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Donate Gear</a>
-                </div>
-                <div class="involvement-card">
-                    <div class="value-icon">🤝</div>
-                    <h3>Partner With Us</h3>
-                    <p>Organizations and businesses can partner with us to expand our reach and impact.</p>
-                    <a href="#partner" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Partner</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Future: Skatepark -->
-    <section class="section section-alt">
-        <div class="container">
-            <h2 class="section-title">The Future: Skatepark Project</h2>
-            <p class="section-subtitle">We're building Northern Uganda's first community skatepark - a permanent home for youth empowerment, creativity, and community gathering.</p>
-            <div style="text-align: center; margin-top: var(--spacing-lg);">
-                <a href="#skatepark" class="btn btn-primary">Support the Park</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="section">
-        <div class="container">
-            <h2 class="section-title">Get in Touch</h2>
-            <div class="contact-grid">
-                <div class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="assets/img/learn-to-skate.jpeg" alt="Kids learning to skate">
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <h3>Learn to Skate Programs</h3>
+                    <p>Structured beginner programs focused on building confidence, basic skills, and safety awareness. Perfect for newcomers to skateboarding culture.</p>
                 </div>
-                <div class="contact-info">
+
+            
+
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="assets/img/com.jpeg" alt="Skateboard competition crowd">
+                    </div>
+                    <h3>Community Events & Competitions</h3>
+                    <p>Regular competitions, jams, and community gatherings that showcase talent, build community spirit, and celebrate our skateboarding culture.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="assets/img/youth.jpg" alt="Skater mentoring a young child">
+                    </div>
+                    <h3>Youth Mentorship</h3>
+                    <p>Pairing experienced skaters with newcomers, developing leadership skills and creating positive role models within the community.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-image-container">
+                        <img src="assets/img/community-events.jpg" alt="Render of a new skatepark">
+                    </div>
+                    <h3>Future Skatepark Project</h3>
+                    <p>Working toward building Northern Uganda's first public skatepark - a dedicated, safe space for the community to grow and thrive.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+        <!-- GALLERY PAGE -->
+        <div id="gallery-page" class="page page-hidden">
+            <section class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <h1 class="section-title">Gallery</h1>
+                        <p class="section-subtitle">Witness the transformation - see how skateboarding is changing lives in Gulu</p>
+                    </div>
+                    
+<div class="grid grid-3">
+    <div class="image-placeholder" style="height: 200px;">
+        <img src="assets/img/person.jpeg" alt="Youth skateboarding action shot">
+    </div>
+    <div class="image-placeholder" style="height: 200px;">
+        <img src="assets/img/2.jpeg" alt="Community event group photo">
+    </div>
+    <div class="image-placeholder" style="height: 200px;">
+        <img src="assets/img/3.jpeg" alt="Skateboarding video thumbnail">
+    </div>
+    <div class="image-placeholder" style="height: 200px;">
+        <img src="assets/img/free-skate-session.jpeg" alt="Skateboarding learning session photo">
+    </div>
+    <div class="image-placeholder" style="height: 200px;">
+        <img src="assets/img/4.jpeg" alt="Skateboarding competition moment">
+    </div>
+    <div class="image-placeholder" style="height: 200px;">
+        <img src="assets/img/5.jpeg" alt="Community celebration photo">
+    </div>
+    <div class="image-placeholder" style="height: 200px;">
+        <img src="assets/img/6.jpeg" alt="Skateboarding competition moment">
+    </div>
+    <div class="image-placeholder" style="height: 200px;">
+        <img src="assets/img/learn-to-skate.jpeg" alt="Skateboarding competition moment">
+    </div>
+
+
+</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- IMPACT PAGE -->
+        <!-- IMPACT PAGE -->
+        <div id="impact-page" class="page page-hidden">
+            <section class="section" style="padding-top: 120px;">
+                <div class="container">
+                    <h1 class="section-title">Our Impact</h1>
+                    <p class="section-subtitle">Creating visible, positive change in Northern Uganda</p>
+                    
+                    <!-- Success Stories -->
+                    <div style="margin-bottom: 80px;">
+                        <h2 style="text-align: center; font-family: var(--font-heading); font-size: 2rem; margin-bottom: 50px;">Success Stories</h2>
+                        <div class="grid grid-2">
+                            <div class="card">
+                                <div class="image-placeholder" style="height: 200px; margin-bottom: 20px;">
+                                    <!-- INSERT SUCCESS STORY PHOTO 1 HERE -->
+                                        <img src="assets/img/person.jpeg" alt="Youth skateboarding action shot">
+                                </div>
+                                <h3>From Streets to Success</h3>
+                                <p><em>"Before GSC, I was hanging with the wrong crowd. Skateboarding gave me focus and friends who actually care about my future. Now I'm back in school and teaching younger kids to skate."</em></p>
+                                <p><strong>- James, Age 17</strong></p>
+                            </div>
+                            <div class="card">
+                                <div class="image-placeholder" style="height: 200px; margin-bottom: 20px;">
+                                    <!-- INSERT SUCCESS STORY PHOTO 2 HERE -->
+                                            <img src="assets/img/2.jpeg" alt="Community event group photo">
+
+                                </div>
+                                <h3>Building Confidence</h3>
+                                <p><em>"I was very shy before joining GSC. Through skateboarding, I learned to overcome fear and believe in myself. Now I'm a peer mentor and help organize our community events."</em></p>
+                                <p><strong>- Sarah, Age 16</strong></p>
+                            </div>
+                            <div class="card">
+                                <div class="image-placeholder" style="height: 200px; margin-bottom: 20px;">
+                                    <!-- INSERT SUCCESS STORY PHOTO 3 HERE -->
+                                            <img src="assets/img/6.jpeg" alt="Community event group photo">
+
+                                </div>
+                                <h3>Community Leader</h3>
+                                <p><em>"GSC taught me that falling down isn't failing - it's learning. This mindset helped me in school and life. I'm now studying at university and plan to return to help grow the community."</em></p>
+                                <p><strong>- David, Age 20</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Impact Numbers -->
+                    <div style="background: var(--color-light-gray); padding: 60px; border-radius: 12px; margin-bottom: 60px;">
+                        <h2 style="text-align: center; font-family: var(--font-heading); font-size: 2rem; margin-bottom: 40px;">By The Numbers</h2>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <span class="stat-number">200+</span>
+                                <span>Youth Engaged Annually</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">85%</span>
+                                <span>Stayed in School</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">50+</span>
+                                <span>Community Events</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">30+</span>
+                                <span>Peer Mentors Trained</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- What We're Creating -->
+                    <div>
+                        <h2 style="text-align: center; font-family: var(--font-heading); font-size: 2rem; margin-bottom: 40px;">What We're Creating</h2>
+                        <div class="grid grid-2">
+                            <div>
+                                <h3 style="color: var(--color-primary); margin-bottom: 15px;">✨ Tangible Alternatives</h3>
+                                <p>Providing positive outlets that directly compete with negative influences and idle time.</p>
+                            </div>
+                            <div>
+                                <h3 style="color: var(--color-primary); margin-bottom: 15px;">💪 Improved Well-being</h3>
+                                <p>Better mental and physical health outcomes for all participants through active engagement.</p>
+                            </div>
+                            <div>
+                                <h3 style="color: var(--color-primary); margin-bottom: 15px;">🎯 Pride & Identity</h3>
+                                <p>Growing sense of belonging and positive self-identity among local youth.</p>
+                            </div>
+                            <div>
+                                <h3 style="color: var(--color-primary); margin-bottom: 15px;">🚀 Skill Development</h3>
+                                <p>Platform for building confidence, resilience, and leadership capabilities.</p>
+                            </div>
+                            <div>
+                                <h3 style="color: var(--color-primary); margin-bottom: 15px;">🌍 Community Model</h3>
+                                <p>Demonstrating effective community-led youth empowerment strategies.</p>
+                            </div>
+                            <div>
+                                <h3 style="color: var(--color-primary); margin-bottom: 15px;">🔄 Social Transformation</h3>
+                                <p>Rebuilding social fabric through shared experiences and mutual support.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SUPPORT PAGE -->
+        <div id="support-page" class="page page-hidden">
+    <section class="section" style="padding-top: 120px;">
+        <div class="container">
+            <h1 class="section-title">Support Our Movement</h1>
+            <p class="section-subtitle">Help us empower more youth and build a brighter future for Northern Uganda</p>
+
+            <div class="grid grid-2 support-cards-grid"> <div class="card support-card-donate" style="background: var(--color-primary); color: white;">
+                    <h3 style="color: white; margin-bottom: 20px;">💰 Make a Donation</h3>
+                    <p style="margin-bottom: 20px;">Your support directly impacts young lives. Every contribution helps us provide equipment, education support, and community programming.</p>
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                        <h4 style="margin-bottom: 15px;">What Your Donation Provides:</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• UGX 50,000 - One skateboard for a youth</li>
+                            <li>• UGX 200,000 - School fees for one term</li>
+                            <li>• UGX 500,000 - Safety equipment for 10 youth</li>
+                            <li>• UGX 1,000,000 - Community event hosting</li>
+                        </ul>
+                    </div>
+                    <div class="image-placeholder" style="height: 60px; background: rgba(255,255,255,0.2); color: white; margin: 20px 0;">
+                        PAYPAL / MOBILE MONEY<br>INTEGRATION
+                    </div>
+                </div>
+
+                <div class="card support-card-volunteer">
+                    <h3 style="color: var(--color-accent); margin-bottom: 20px;">🤝 Volunteer With Us</h3>
+                    <p style="margin-bottom: 20px;">Join our community of volunteers and make a direct impact through your time and skills.</p>
+                    <h4 style="margin-bottom: 15px;">Volunteer Opportunities:</h4>
+                    <ul style="margin-bottom: 20px;">
+                        <li><strong>Skateboard Coaching:</strong> Teach skills and safety</li>
+                        <li><strong>Academic Mentoring:</strong> Support educational goals</li>
+                        <li><strong>Event Organization:</strong> Help plan and execute community events</li>
+                        <li><strong>Administrative Support:</strong> Assist with programs and documentation</li>
+                        <li><strong>Skills Training:</strong> Share your professional expertise</li>
+                    </ul>
+                    <a href="#" class="cta-button" onclick="showPage('contact')">Sign Up to Volunteer</a>
+                </div>
+
+                <div class="card support-card-equipment">
+                    <h3 style="color: var(--color-primary); margin-bottom: 20px;">🛹 Donate Equipment</h3>
+                    <p style="margin-bottom: 20px;">Help us equip more youth with the tools they need to participate safely and confidently.</p>
+                    <h4 style="margin-bottom: 15px;">Needed Equipment:</h4>
+                    <ul style="margin-bottom: 20px;">
+                        <li>Skateboards (new or gently used)</li>
+                        <li>Helmets and protective gear</li>
+                        <li>Skateboard shoes</li>
+                        <li>Maintenance tools</li>
+                        <li>Training cones and obstacles</li>
+                    </ul>
+                    <p style="background: var(--color-light-gray); padding: 15px; border-radius: 6px;"><strong>Note:</strong> All donated equipment is inspected for safety before distribution to ensure participant wellbeing.</p>
+                </div>
+
+                <div class="card support-card-partnership">
+                    <h3 style="color: var(--color-accent); margin-bottom: 20px;">🤝 Partner With Us</h3>
+                    <p style="margin-bottom: 20px;">Organizations, businesses, and skateboard brands can partner with us to amplify our impact.</p>
+                    <h4 style="margin-bottom: 15px;">Partnership Opportunities:</h4>
+                    <ul style="margin-bottom: 20px;">
+                        <li><strong>Corporate Sponsorship:</strong> Support programs and events</li>
+                        <li><strong>Equipment Partnerships:</strong> Provide ongoing gear support</li>
+                        <li><strong>Skill Development:</strong> Offer training and workshops</li>
+                        <li><strong>Infrastructure Support:</strong> Help build our future skatepark</li>
+                        <li><strong>Media Collaboration:</strong> Share our story</li>
+                    </ul>
+                    <a href="#" class="cta-button" onclick="showPage('contact')">Explore Partnerships</a>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px; padding: 40px; background: var(--color-light-gray); border-radius: 12px;">
+                <h3 style="margin-bottom: 20px;">📢 Spread the Word</h3>
+                <p style="margin-bottom: 30px;">Help us reach more supporters by sharing our mission on social media and within your networks.</p>
+                <div class="image-placeholder" style="height: 60px; margin: 0 auto; max-width: 400px;">
+                    SOCIAL MEDIA SHARE BUTTONS<br>(Facebook, Instagram, Twitter, LinkedIn)
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section id="shop-merch-section" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Shop Our Merch</h2>
+                <p class="section-subtitle">Every purchase supports our programs. Show your GSC pride!</p>
+            </div>
+
+            <div class="merch-grid grid grid-4"> <div class="merch-item fade-up" onclick="showPage('support'); scrollToStore();">
+                    <div class="merch-image-container">
+                        <img src="assets/img/hoodie.webp" alt="GSC Classic Hoodie - Front and Back Print">
+                    </div>
+                    <div class="merch-details">
+                        <div class="merch-title">GSC Classic Hoodie</div>
+                        <div class="merch-price">UGX 100,000</div>
+                    </div>
+                </div>
+
+                <div class="merch-item fade-up" onclick="showPage('support'); scrollToStore();">
+                    <div class="merch-image-container">
+                        <img src="assets/img/t.jpg" alt="GSC Classic T-Shirt - Front and Back Print">
+                    </div>
+                    <div class="merch-details">
+                        <div class="merch-title">GSC Classic Tee</div>
+                        <div class="merch-price">UGX 45,000</div>
+                    </div>
+                </div>
+
+                <div class="merch-item fade-up" onclick="showPage('support'); scrollToStore();">
+                    <div class="merch-image-container">
+                        <img src="assets/img/cap.jpg" alt="GSC Logo Cap - Black">
+                    </div>
+                    <div class="merch-details">
+                        <div class="merch-title">GSC Logo Cap</div>
+                        <div class="merch-price">UGX 30,000</div>
+                    </div>
+                </div>
+
+                <div class="merch-item fade-up" onclick="showPage('support'); scrollToStore();">
+                    <div class="merch-image-container">
+                        <img src="assets/img/sticker.jpg" alt="GSC Sticker Pack - Various Designs">
+                    </div>
+                    <div class="merch-details">
+                        <div class="merch-title">GSC Sticker Pack</div>
+                        <div class="merch-price">UGX 15,000</div>
+                    </div>
+                </div>
+
+                <div class="merch-item fade-up" onclick="showPage('support'); scrollToStore();">
+                    <div class="merch-image-container">
+                        <img src="assets/img/custom.jpg" alt="GSC Custom Skateboard Deck">
+                    </div>
+                    <div class="merch-details">
+                        <div class="merch-title">GSC Custom Deck</div>
+                        <div class="merch-price">UGX 150,000</div>
+                    </div>
+                </div>
+
+                <div class="merch-item fade-up" onclick="showPage('support'); scrollToStore();">
+                    <div class="merch-image-container">
+                        <img src="assets/img/tote-bag.jpg" alt="GSC Tote Bag">
+                    </div>
+                    <div class="merch-details">
+                        <div class="merch-title">GSC Tote Bag</div>
+                        <div class="merch-price">UGX 25,000</div>
+                    </div>
+                </div>
+            </div>
+             <div class="text-center" style="margin-top: var(--spacing-xl);">
+                 <a href="#" class="btn btn-primary" onclick="showPage('shop');">View All Products</a>
+             </div>
+        </div>
+    </section>
+</div>
+
+        <!-- ENHANCED CONTACT PAGE -->
+<div id="contact-page" class="page page-hidden">
+    <section class="section" style="padding-top: 120px;">
+        <div class="container">
+            <h1 class="section-title">Get In Touch</h1>
+            <p class="section-subtitle">Ready to join our movement? We'd love to hear from you!</p>
+            
+            <div class="grid grid-2">
+                <!-- Enhanced Contact Form -->
+                <div>
+                    <form class="contact-form">
+                        <h3>Send Us a Message</h3>
+                        
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+256 XXX XXX XXX">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a topic...</option>
+                                <option value="volunteer">🤝 Volunteer Opportunities</option>
+                                <option value="donate">💰 Donations & Support</option>
+                                <option value="partner">🤝 Partnership Inquiry</option>
+                                <option value="media">📺 Media & Press</option>
+                                <option value="general">💬 General Inquiry</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your interest in GSC..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="cta-button">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Enhanced Contact Information -->
+                <div class="contact-info-section">
                     <h3>Contact Information</h3>
-                    <p><strong>Email:</strong> info@guluskateboard.org</p>
-                    <p><strong>Phone:</strong> +256 XXX XXX XXX</p>
-                    <p><strong>Location:</strong> Gulu, Northern Uganda</p>
-                    <div style="margin-top: var(--spacing-lg);">
-                        <h4>Follow Us</h4>
-                        <p>📱 Instagram: @guluskateboard</p>
-                        <p>📘 Facebook: Gulu Skateboard Community</p>
+                    
+                    <div class="card">
+                        <h4>📧 Email</h4>
+                        <p><strong>info@guluskateboardcommunity.org</strong></p>
+                        <p><strong>founder@guluskateboardcommunity.org</strong></p>
+                        <p style="color: var(--color-gray); font-size: 0.9rem;">We typically respond within 24 hours</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>📱 Phone</h4>
+                        <p><strong>+256 XXX XXX XXX</strong></p>
+                        <p style="color: var(--color-gray); font-size: 0.9rem;">Available Mon-Fri, 9AM-5PM EAT</p>
+                        <p style="color: var(--color-gray); font-size: 0.9rem;">WhatsApp messages welcome</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>📍 Location</h4>
+                        <p><strong>Gulu, Northern Region</strong><br>Uganda</p>
+                        <p style="color: var(--color-gray); font-size: 0.9rem;">
+                            Meeting point details provided upon contact
+                        </p>
+                        <p style="color: var(--color-gray); font-size: 0.9rem;">
+                            Community sessions every weekend
+                        </p>
+                        <p style="color: var(--color-gray); font-size: 0.9rem;">
+                            <a href="https://www.google.com/maps?q=2.771961,32.293631" target="_blank" rel="noopener noreferrer">
+                                📌 View exact location on Google Maps
+                            </a>
+                        </p>
+                    </div>
+
+
+                    <div class="card social-media-card">
+                        <h4>🌐 Follow Us</h4>
+                        <p style="margin-bottom: 1rem;">Stay connected with our community</p>
+                        <div class="image-placeholder">
+                            SOCIAL MEDIA LINKS<br>
+                            <small>(Instagram, Facebook, YouTube)</small>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+</div>
 
     <!-- Footer -->
-    <footer>
+    <footer id="site-footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                        <div class="image-placeholder">
+                            <img src="assets/img/logo6.png" alt="Gulu Skateboard Community Logo">
+                        </div>
+                        <!-- FOOTER_LOGO_PLACEHOLDER -->
+                        <span style="font-family: var(--font-heading); font-weight: 600; color: var(--color-primary);">Gulu Skateboard Community</span>
+                    </div>
+                    <p>Empowering youth in Northern Uganda through skateboarding, building community, resilience, and brighter futures one push at a time.</p>
+                </div>
+                
+                <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#story">Our Story</a></li>
-                        <li><a href="#programs">Programs</a></li>
-                        <li><a href="#impact">Impact</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
+                        <li><a href="#" onclick="showPage('about')">About Us</a></li>
+                        <li><a href="#" onclick="showPage('programs')">Our Programs</a></li>
+                        <li><a href="#" onclick="showPage('impact')">Our Impact</a></li>
+                        <li><a href="#" onclick="showPage('gallery')">Gallery</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-section">
-                    <h4>Support</h4>
+                    <h4>Get Involved</h4>
                     <ul>
-                        <li><a href="#donate">Donate</a></li>
-                        <li><a href="#volunteer">Volunteer</a></li>
-                        <li><a href="#equipment">Donate Equipment</a></li>
-                        <li><a href="#partner">Partnership</a></li>
+                        <li><a href="#" onclick="showPage('support')">Donate</a></li>
+                        <li><a href="#" onclick="showPage('support')">Volunteer</a></li>
+                        <li><a href="#" onclick="showPage('support')">Partner With Us</a></li>
+                        <li><a href="#" onclick="showPage('contact')">Contact Us</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-section">
-                    <h4>Newsletter</h4>
-                    <p>Stay updated with our latest news and impact stories.</p>
-                    <div style="margin-top: var(--spacing-sm);">
-                        <input type="email" placeholder="Your email" style="padding: var(--spacing-xs); border-radius: 4px; border: none; margin-right: var(--spacing-xs);">
-                        <button class="btn btn-primary" style="padding: var(--spacing-xs) var(--spacing-sm);">Subscribe</button>
+                    <h4>Connect</h4>
+                    <div class="image-placeholder" style="height: 80px; margin-bottom: 20px;">
+                        <!-- INSERT SOCIAL MEDIA ICONS HERE -->
+                        SOCIAL MEDIA<br>ICON LINKS
                     </div>
+                    <p>Gulu, Northern Uganda<br>
+                    Email: info@guluskateboardcommunity.org</p>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2025 Gulu Skateboard Community. All rights reserved.</p>
+                <p>&copy; 2024 Gulu Skateboard Community. All rights reserved. | Building futures through skateboarding since 2013.</p>
             </div>
         </div>
     </footer>
+
+    <script>
+
+         // YouTube Iframe API setup (only if not already present)
+    let youtubePlayer;
+
+    // This function will be called when the YouTube Iframe API is ready
+    function onYouTubeIframeAPIReady() {
+        youtubePlayer = new YT.Player('myYoutubeVideo', {
+            events: {
+                'onReady': onPlayerReady
+            }
+        });
+    }
+
+    function onPlayerReady(event) {
+        event.target.mute(); // Mute the video on load
+    }
+
+    // Load the YouTube Iframe API asynchronously if not already loaded
+    if (typeof YT === 'undefined' || typeof YT.Player === 'undefined') {
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/embed/1?autoplay=1&mute=1&enablejsapi=1";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
+
+    // --- Video Autoplay and Mute on Scroll ---
+    const videoIframe = document.getElementById('myYoutubeVideo');
+
+    if (videoIframe) {
+        const observerOptions = {
+            root: null, // relative to the viewport
+            rootMargin: '0px',
+            threshold: 0.5 // Trigger when 50% of the video is visible
+        };
+
+        const videoObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                     if (youtubePlayer && youtubePlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
+                        youtubePlayer.playVideo();
+                    }
+                } else {
+                    if (youtubePlayer && youtubePlayer.getPlayerState() === YT.PlayerState.PLAYING) {
+                        youtubePlayer.pauseVideo();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        videoObserver.observe(videoIframe);
+    }
+
+        // Page Navigation System
+        let currentPage = 'home';
+        
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.add('page-hidden');
+            });
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageId + '-page');
+            if (targetPage) {
+                targetPage.classList.remove('page-hidden');
+                currentPage = pageId;
+            }
+            
+            // Update navigation active state
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const activeLink = document.querySelector(`.nav-link[onclick="showPage('${pageId}')"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+            
+            // Close mobile menu if open
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Trigger animations for the new page
+            setTimeout(() => {
+                triggerAnimations();
+            }, 100);
+        }
+        
+
+        // Scroll-triggered zoom effect for video
+        function handleVideoZoom() {
+            const video = document.getElementById('featured-video');
+            const rect = video.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // Calculate if video is in viewport and how much
+            const isInViewport = rect.top < windowHeight && rect.bottom > 0;
+            
+            if (isInViewport) {
+                // Calculate zoom based on scroll position
+                const viewportCenter = windowHeight / 2;
+                const videoCenter = rect.top + rect.height / 2;
+                const distanceFromCenter = Math.abs(viewportCenter - videoCenter);
+                const maxDistance = windowHeight / 2;
+                
+                // Apply zoom when video is closer to center
+                if (distanceFromCenter < maxDistance) {
+                    video.classList.add('zoom-in');
+                } else {
+                    video.classList.remove('zoom-in');
+                }
+            } else {
+                video.classList.remove('zoom-in');
+            }
+        }
+
+        // Throttled scroll handler for better performance
+        let ticking = false;
+        function onScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    handleVideoZoom();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        // Add scroll event listener
+        window.addEventListener('scroll', onScroll);
+        
+        // Initial check
+        handleVideoZoom();
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('active');
+        }
+        
+        // Scroll Animations
+        function triggerAnimations() {
+            const elements = document.querySelectorAll('.fade-up');
+            elements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.classList.add('visible');
+                }, index * 100);
+            });
+        }
+        
+        // Form Submission Handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.querySelector('.contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! We will get back to you soon.');
+                    this.reset();
+                });
+            }
+            
+            // Initialize animations on page load
+            triggerAnimations();
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.getElementById('site-header');
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.backdropFilter = 'blur(10px)';
+                } else {
+                    header.style.background = 'var(--color-light)';
+                    header.style.backdropFilter = 'none';
+                }
+            });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const nav = document.getElementById('primary-nav');
+            const navMenu = document.getElementById('nav-menu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!nav.contains(e.target) && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
